@@ -1,6 +1,5 @@
 package com.management.user;
 
-import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
