@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.management.user.Service.UserService;
 import com.management.user.dto.UserDto;
+import com.management.user.handling.UserNotFound;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -33,25 +34,27 @@ public class UserController {
 	@GetMapping("/{id}")
 	public Mono<ResponseEntity<UserDto>> getById(@PathVariable Long id)
 	{
-		return this.userServ.getById(id)
-				.map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+
+		 return this.userServ.getById(id)
+		 .switchIfEmpty(Mono.error(new UserNotFound("user with "+id+" not found")))
+		 .map(ResponseEntity::ok);
+				
+
 	}
 	
 	@PostMapping("/")
 	public Mono<ResponseEntity<UserDto>> addUser(@RequestBody Mono<UserDto> dto)
 	{
 		return this.userServ.addUser(dto)
-				.map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+				.map(ResponseEntity::ok);
 	}
 	
 	@PutMapping("/{id}")
 	public Mono<ResponseEntity<UserDto>> updateUser(@PathVariable Long id,@RequestBody Mono<UserDto> dto)
 	{
 		return this.userServ.updateUser(id,dto)
-				.map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+				.switchIfEmpty(Mono.error(new UserNotFound("user with id "+id+" not found")))
+				.map(ResponseEntity::ok);
 	}
 	
 	@DeleteMapping("/{id}")
