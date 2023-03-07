@@ -82,7 +82,7 @@ class UserManagementControllerTests {
 
 				
 				StepVerifier.create(response)
-				.expectNextCount(0)
+				.expectNextCount(1)
 				.verifyComplete();
 			}
 	
@@ -148,7 +148,7 @@ class UserManagementControllerTests {
 
 				
 				StepVerifier.create(response)
-				.expectNextCount(0)
+				.expectNextCount(1)
 				.verifyComplete();
 			}
 	

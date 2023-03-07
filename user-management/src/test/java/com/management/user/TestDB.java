@@ -127,7 +127,7 @@ public class TestDB {
 	
 	public static  Mono<UserDto> getUserDto()
 	{
-		Mono<UserDto> mono = Mono.just(new UserDto("test","test","test@test.com","+212600000"));
+		Mono<UserDto> mono = Mono.just(UserDto.builder().email("test@test.com").firstname("test").lastname("test").phonenumber("06000").build());
 		return mono;
 	}
 }
