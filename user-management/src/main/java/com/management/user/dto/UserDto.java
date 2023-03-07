@@ -1,13 +1,18 @@
 package com.management.user.dto;
 
+import java.io.Serializable;
+
+
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
+@Builder
+public class UserDto //extends RepresentationModel<UserDto>
+implements Serializable{
 	
 	private Long id;
 	private String firstname;
@@ -15,12 +20,6 @@ public class UserDto {
 	private String email;
 	private String phonenumber;
 	
-	public UserDto(String firstname, String lastname, String email, String phonenumber) {
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.email = email;
-		this.phonenumber = phonenumber;
-	}
 	
 	
 }
