@@ -37,13 +37,13 @@ public class TestDB {
 		var statements = Arrays.asList(//
 				"DROP TABLE IF EXISTS users;",
 				"CREATE TABLE users ( id SERIAL4 PRIMARY KEY, firstname VARCHAR(100) NOT NULL, lastname VARCHAR(100) NOT NULL,"
-				+ "email VARCHAR(100) NOT NULL,phonenumber VARCHAR(100) NOT NULL);",
-				"INSERT INTO public.users (firstname,lastname,email,phonenumber) VALUES\r\n"
-				+ "	 ('Ayoub','Elk','aelk@test.com','0600000')",
-				"INSERT INTO public.users (firstname,lastname,email,phonenumber) VALUES\r\n"
-				+ "	 ('John','Snow','john@test.com','0900000')",
-				"INSERT INTO public.users (firstname,lastname,email,phonenumber) VALUES\r\n"
-				+ "	 ('sam','bass','sam@test.com','0500000')");
+				+ "email VARCHAR(100) NOT NULL,phonenumber VARCHAR(100) NOT NULL,salaire int8);",
+				"INSERT INTO public.users (firstname,lastname,email,phonenumber,salaire) VALUES\r\n"
+				+ "	 ('Ayoub','Elk','aelk@test.com','0600000',3000)",
+				"INSERT INTO public.users (firstname,lastname,email,phonenumber,salaire) VALUES\r\n"
+				+ "	 ('John','Snow','john@test.com','0900000',4000)",
+				"INSERT INTO public.users (firstname,lastname,email,phonenumber,salaire) VALUES\r\n"
+				+ "	 ('sam','bass','sam@test.com','0500000',5000)");
 
 		statements.forEach(it -> database.sql(it) 
 				.fetch() 
@@ -127,7 +127,7 @@ public class TestDB {
 	
 	public static  Mono<UserDto> getUserDto()
 	{
-		Mono<UserDto> mono = Mono.just(UserDto.builder().email("test@test.com").firstname("test").lastname("test").phonenumber("06000").build());
+		Mono<UserDto> mono = Mono.just(UserDto.builder().email("test@test.com").firstname("test").lastname("test").phonenumber("06000").salaire(5000L).build());
 		return mono;
 	}
 }

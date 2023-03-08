@@ -112,13 +112,13 @@ public class UserManagementServiceTest {
 	
 	public static  User getUserEntity()
 	{
-		UserDto user1 = new UserDto(1L,"ayoub","elk","aelk@gmail.com","+212600000");
+		UserDto user1 = new UserDto(10L,"ayoub","elk","aelk@gmail.com","+212600000",5000L);
 		return EntityDto.toEntity(user1);
 	}
 	
 	public static  UserDto getUserDto()
 	{
-		UserDto user1 = new UserDto(1L,"ayoub","elk","aelk@gmail.com","+212600000");
+		UserDto user1 = new UserDto(10L,"ayoub","elk","aelk@gmail.com","+212600000",5000L);
 		return user1;
 	}
 	
