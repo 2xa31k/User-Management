@@ -1,4 +1,4 @@
-package com.management.user.Service;
+package com.management.user.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -6,10 +6,10 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import com.management.user.Entity.User;
-import com.management.user.Repository.UserRepository;
-import com.management.user.Util.EntityDto;
 import com.management.user.dto.UserDto;
+import com.management.user.entity.User;
+import com.management.user.repository.UserRepository;
+import com.management.user.util.EntityDto;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

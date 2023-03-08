@@ -1,9 +1,9 @@
-package com.management.user.Util;
+package com.management.user.util;
 
 import org.springframework.beans.BeanUtils;
 
-import com.management.user.Entity.User;
 import com.management.user.dto.UserDto;
+import com.management.user.entity.User;
 
 public class EntityDto {
 

@@ -1,4 +1,4 @@
-package com.management.user.Controller;
+package com.management.user.controller;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.management.user.Entity.User;
-import com.management.user.Service.UserService;
-import com.management.user.Util.EntityAssembler;
 import com.management.user.dto.UserDto;
+import com.management.user.entity.User;
 import com.management.user.handling.UserNotFound;
+import com.management.user.service.UserService;
+import com.management.user.util.EntityAssembler;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import com.management.user.Entity.User;
-import com.management.user.Repository.UserRepository;
-import com.management.user.Service.UserService;
-import com.management.user.Util.EntityDto;
 import com.management.user.dto.UserDto;
+import com.management.user.entity.User;
+import com.management.user.repository.UserRepository;
+import com.management.user.service.UserService;
+import com.management.user.util.EntityDto;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

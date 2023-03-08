@@ -1,10 +1,10 @@
-package com.management.user.Repository;
+package com.management.user.repository;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.management.user.Entity.User;
+import com.management.user.entity.User;
 
 import reactor.core.publisher.Flux;
 

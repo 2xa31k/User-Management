@@ -1,12 +1,12 @@
-package com.management.user.Util;
+package com.management.user.util;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
-import com.management.user.Controller.UserController;
-import com.management.user.Entity.User;
+import com.management.user.controller.UserController;
 import com.management.user.dto.UserDto;
+import com.management.user.entity.User;
 
 @Component
 public class EntityAssembler extends RepresentationModelAssemblerSupport<User, UserDto> {

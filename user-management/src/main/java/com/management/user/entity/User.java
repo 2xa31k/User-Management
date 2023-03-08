@@ -1,4 +1,4 @@
-package com.management.user.Entity;
+package com.management.user.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
