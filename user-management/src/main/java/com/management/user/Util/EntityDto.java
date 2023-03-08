@@ -15,10 +15,7 @@ public class EntityDto {
 	
 	public static User toEntity(UserDto dto){
         User user = new User();
-        user.setEmail(dto.getEmail());
-        user.setFirstname(dto.getFirstname());
-        user.setPhonenumber(dto.getPhonenumber());
-        user.setLastname(dto.getLastname());
+        BeanUtils.copyProperties(dto, user);
         return user;
     }
 }

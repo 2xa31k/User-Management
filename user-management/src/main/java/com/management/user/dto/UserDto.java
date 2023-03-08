@@ -2,6 +2,7 @@ package com.management.user.dto;
 
 import java.io.Serializable;
 
+import org.springframework.hateoas.RepresentationModel;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserDto //extends RepresentationModel<UserDto>
+public class UserDto extends RepresentationModel<UserDto>
 implements Serializable{
 	
 	private Long id;
@@ -19,6 +20,7 @@ implements Serializable{
 	private String lastname;
 	private String email;
 	private String phonenumber;
+	private Long salaire;
 	
 	
 	

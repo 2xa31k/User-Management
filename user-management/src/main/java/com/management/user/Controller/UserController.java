@@ -58,7 +58,21 @@ public class UserController {
 		 	
 		 }
 				
-
+	@GetMapping("/search")
+    public Mono<PagedModel<UserDto>> getAllSearch(@RequestParam(defaultValue = "0" ,value="page") int page
+    		, @RequestParam(defaultValue = "5",value="size") int size
+    		, @RequestParam(defaultValue = "",value="firstname") String firstname
+    		, @RequestParam(defaultValue = "",value="lastname") String lastname
+    		, @RequestParam(defaultValue = "0",value="minSalaire") Long minSalaire
+    		, @RequestParam(defaultValue = "50000",value="maxSalaire") Long maxSalaire){
+		
+		Link link = linkTo(methodOn(UserController.class)
+			      .getAllSearch(page,size,firstname,lastname,minSalaire,maxSalaire)).withSelfRel();
+		
+        return  this.userServ.getAllUsers(firstname,lastname,minSalaire,maxSalaire,PageRequest.of(page, size))
+        		 .flatMap(u -> Mono.just(pagedResourcesAssembler.toModel(u,entityAssembler,link)));
+         
+    }
 	
 	
 	@GetMapping("/{id}")

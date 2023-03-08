@@ -15,4 +15,5 @@ public class User {
 	private String lastname;
 	private String email;
 	private String phonenumber;
+	private Long salaire;
 }
