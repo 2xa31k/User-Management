@@ -1,0 +1,114 @@
+swagger: "2.0"
+info:
+  title: "Sample API"
+  version: "1.0.0"
+basePath: "/api"
+schemes:
+  - "https"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+paths:
+  /users:
+    get:
+      summary: "Get all users"
+      description: "Returns a list of all users"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/User"
+    post:
+      summary: "Create a new user"
+      description: "Creates a new user with the given data"
+      parameters:
+        - name: "user"
+          in: "body"
+          description: "User data"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
+
+  /users/{id}:
+    get:
+      summary: "Get user by ID"
+      description: "Returns the user with the given ID"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "User ID"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
+    put:
+      summary: "Update user by ID"
+      description: "Updates the user with the given ID"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "User ID"
+          required: true
+          type: "integer"
+          format: "int64"
+        - name: "user"
+          in: "body"
+          description: "User data"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
+    delete:
+      summary: "Delete user by ID"
+      description: "Deletes the user with the given ID"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "User ID"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        200:
+          description: "Successful operation"
+
+definitions:
+  User:
+    type: "object"
+    required:
+       - email
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      firstname:
+        type: "string"
+      lastname:
+        type: "string"
+      phonenumber:
+        type: "string"
+      email:
+        type: "string"
+        format: "email"
+        pattern: '^([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$'
+      salaire:
+        type: "integer"
+        format: "int64"
+        minimum: 2000
