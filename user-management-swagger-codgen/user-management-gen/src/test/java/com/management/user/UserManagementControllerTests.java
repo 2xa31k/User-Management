@@ -29,8 +29,8 @@ class UserManagementControllerTests {
     
 	@Test
 	void getAllUser(){
-		UserDTO user1 = new UserDTO(10L,"ayoub","elk","aelk@gmail.com","+212600000",5000L);
-		UserDTO user2 = new UserDTO(12L,"test","test","test.com","+212600000",6000L);
+		UserDTO user1 = new UserDTO(10L,"ayoub","elk","aelk@gmail.com","+212600000",5000L,null);
+		UserDTO user2 = new UserDTO(12L,"test","test","test.com","+212600000",6000L,null);
 		when(userServ.getAll()).thenReturn(Flux.just(user1,user2));
 		
 		Flux<UserDTO> response = this.client
@@ -48,7 +48,7 @@ class UserManagementControllerTests {
 	
 	@Test
 	void getUserById() {
-		UserDTO user1 = new UserDTO(10L,"ayoub","elk","aelk@gmail.com","+212600000",5000L);
+		UserDTO user1 = new UserDTO(10L,"ayoub","elk","aelk@gmail.com","+212600000",5000L,null);
 		when(userServ.getById(10L)).thenReturn(Mono.just(user1));
 		
 		Mono<UserDTO> response = this.client
@@ -87,7 +87,7 @@ class UserManagementControllerTests {
 	
 	@Test
 	void addUser() {
-		UserDTO user1 = new UserDTO(10L,"ayoub","elk","aelk@gmail.com","+212600000",5000L);
+		UserDTO user1 = new UserDTO(10L,"ayoub","elk","aelk@gmail.com","+212600000",5000L,null);
 		when(userServ.addUser(Mockito.any())).thenReturn(Mono.just(user1));
 		
 		Mono<UserDTO> response = this.client
@@ -109,7 +109,7 @@ class UserManagementControllerTests {
 	
 	@Test
 	void update() {
-		UserDTO user1 = new UserDTO(10L,"ayoub","elk","aelk@gmail.com","+212600000",5000L);
+		UserDTO user1 = new UserDTO(10L,"ayoub","elk","aelk@gmail.com","+212600000",5000L,null);
 		when(userServ.updateUser(Mockito.any(),Mockito.any())).thenReturn(Mono.just(user1));
 		
 		Mono<UserDTO> response = this.client
@@ -131,7 +131,7 @@ class UserManagementControllerTests {
 	
 	@Test
 	void updateIdNotExiste() {
-		UserDTO user1 = new UserDTO(10L,"ayoub","elk","aelk@gmail.com","+212600000",5000L);
+		UserDTO user1 = new UserDTO(10L,"ayoub","elk","aelk@gmail.com","+212600000",5000L,null);
 		when(userServ.updateUser(Mockito.any(),Mockito.any())).thenReturn(Mono.empty());
 		
 		Mono<UserDTO> response = this.client
