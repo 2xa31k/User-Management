@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ServerWebExchange;
 
+import com.management.user.dto.PageResponseDTO;
 import com.management.user.dto.UserDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,7 +32,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import springfox.documentation.annotations.ApiIgnore;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-09T14:51:31.742070+01:00[Africa/Casablanca]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-09T19:56:45.811009400+01:00[Africa/Casablanca]")
 @Validated
 public interface UsersApi {
 
@@ -52,25 +54,13 @@ public interface UsersApi {
         value = "/users",
         produces = { "application/json" }
     )
-    default Mono<ResponseEntity<Flux<UserDTO>>> _usersGet(@ApiIgnore  @Parameter(hidden = true) final ServerWebExchange exchange
+    default Mono<ResponseEntity<Flux<UserDTO>>> usersGet(
+       // @Parameter(hidden = true) @ApiIgnore final ServerWebExchange exchange
     ) {
-        return usersGet(exchange);
-    }
-
-    // Override this method
-    default Mono<ResponseEntity<Flux<UserDTO>>> usersGet(@ApiIgnore  final ServerWebExchange exchange){
-    	Mono<Void> result = Mono.empty();
-        exchange.getResponse().setStatusCode(HttpStatus.NOT_IMPLEMENTED);
-        for (MediaType mediaType : exchange.getRequest().getHeaders().getAccept()) {
-            if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                String exampleString = "{ \"firstname\" : \"firstname\", \"phonenumber\" : \"phonenumber\", \"id\" : 0, \"salaire\" : 6, \"email\" : \"email\", \"lastname\" : \"lastname\" }";
-                result = ApiUtil.getExampleResponse(exchange, mediaType, exampleString);
-                break;
-            }
-        }
+        Mono<Void> result = Mono.empty();
+        
         return result.then(Mono.empty());
 
-    
     }
 
 
@@ -92,17 +82,11 @@ public interface UsersApi {
         method = RequestMethod.DELETE,
         value = "/users/{id}"
     )
-    default Mono<ResponseEntity<Void>> _usersIdDelete(
-        @Parameter(name = "id", description = "User ID", required = true, schema = @Schema(description = "")) @PathVariable("id") Long id,
-        @ApiIgnore  @Parameter(hidden = true) final ServerWebExchange exchange
+    default Mono<ResponseEntity<Void>> usersIdDelete(
+        @Parameter(name = "id", description = "User ID", required = true, schema = @Schema(description = "")) @PathVariable("id") Long id
     ) {
-        return usersIdDelete(id, exchange);
-    }
-
-    // Override this method
-    default  Mono<ResponseEntity<Void>> usersIdDelete(Long id,@ApiIgnore  final ServerWebExchange exchange) {
         Mono<Void> result = Mono.empty();
-        exchange.getResponse().setStatusCode(HttpStatus.NOT_IMPLEMENTED);
+
         return result.then(Mono.empty());
 
     }
@@ -127,24 +111,10 @@ public interface UsersApi {
         value = "/users/{id}",
         produces = { "application/json" }
     )
-    default Mono<ResponseEntity<UserDTO>> _usersIdGet(
-        @Parameter(name = "id", description = "User ID", required = true, schema = @Schema(description = "")) @PathVariable("id") Long id,
-        @ApiIgnore  @Parameter(hidden = true) final ServerWebExchange exchange
+    default Mono<ResponseEntity<UserDTO>> usersIdGet(
+        @Parameter(name = "id", description = "User ID", required = true, schema = @Schema(description = "")) @PathVariable("id") Long id
     ) {
-        return usersIdGet(id, exchange);
-    }
-
-    // Override this method
-    default  Mono<ResponseEntity<UserDTO>> usersIdGet(Long id, @ApiIgnore final ServerWebExchange exchange) {
         Mono<Void> result = Mono.empty();
-        exchange.getResponse().setStatusCode(HttpStatus.NOT_IMPLEMENTED);
-        for (MediaType mediaType : exchange.getRequest().getHeaders().getAccept()) {
-            if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                String exampleString = "{ \"firstname\" : \"firstname\", \"phonenumber\" : \"phonenumber\", \"id\" : 0, \"salaire\" : 6, \"email\" : \"email\", \"lastname\" : \"lastname\" }";
-                result = ApiUtil.getExampleResponse(exchange, mediaType, exampleString);
-                break;
-            }
-        }
         return result.then(Mono.empty());
 
     }
@@ -171,25 +141,12 @@ public interface UsersApi {
         produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default Mono<ResponseEntity<UserDTO>> _usersIdPut(
+    default Mono<ResponseEntity<UserDTO>> usersIdPut(
         @Parameter(name = "id", description = "User ID", required = true, schema = @Schema(description = "")) @PathVariable("id") Long id,
-        @Parameter(name = "UserDTO", description = "User data", required = true, schema = @Schema(description = "")) @Valid @RequestBody Mono<UserDTO> userDTO,
-        @ApiIgnore  @Parameter(hidden = true) final ServerWebExchange exchange
+        @Parameter(name = "UserDTO", description = "User data", required = true, schema = @Schema(description = "")) @Valid @RequestBody UserDTO userDTO
     ) {
-        return usersIdPut(id, userDTO, exchange);
-    }
-
-    // Override this method
-    default  Mono<ResponseEntity<UserDTO>> usersIdPut(Long id, Mono<UserDTO> userDTO,@ApiIgnore  final ServerWebExchange exchange) {
         Mono<Void> result = Mono.empty();
-        exchange.getResponse().setStatusCode(HttpStatus.NOT_IMPLEMENTED);
-        for (MediaType mediaType : exchange.getRequest().getHeaders().getAccept()) {
-            if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                String exampleString = "{ \"firstname\" : \"firstname\", \"phonenumber\" : \"phonenumber\", \"id\" : 0, \"salaire\" : 6, \"email\" : \"email\", \"lastname\" : \"lastname\" }";
-                result = ApiUtil.getExampleResponse(exchange, mediaType, exampleString);
-                break;
-            }
-        }
+        
         return result.then(Mono.empty());
 
     }
@@ -215,26 +172,42 @@ public interface UsersApi {
         produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default Mono<ResponseEntity<UserDTO>> _usersPost(
-        @Parameter(name = "UserDTO", description = "User data", required = true, schema = @Schema(description = "")) @Valid @RequestBody Mono<UserDTO> userDTO,
-        @ApiIgnore  @Parameter(hidden = true) final ServerWebExchange exchange
+    default Mono<ResponseEntity<UserDTO>> usersPost(
+        @Parameter(name = "UserDTO", description = "User data", required = true, schema = @Schema(description = "")) @Valid @RequestBody UserDTO userDTO
     ) {
-        return usersPost(userDTO, exchange);
-    }
-
-    // Override this method
-    default  Mono<ResponseEntity<UserDTO>> usersPost(@Valid Mono<UserDTO> userDTO,@ApiIgnore  final ServerWebExchange exchange) {
         Mono<Void> result = Mono.empty();
-        exchange.getResponse().setStatusCode(HttpStatus.NOT_IMPLEMENTED);
-        for (MediaType mediaType : exchange.getRequest().getHeaders().getAccept()) {
-            if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                String exampleString = "{ \"firstname\" : \"firstname\", \"phonenumber\" : \"phonenumber\", \"id\" : 0, \"salaire\" : 6, \"email\" : \"email\", \"lastname\" : \"lastname\" }";
-                result = ApiUtil.getExampleResponse(exchange, mediaType, exampleString);
-                break;
-            }
-        }
         return result.then(Mono.empty());
 
     }
+    /**
+     * GET /users/search : Get all users
+     * Returns a list of all users
+     *
+     * @param minSalaire minimum salaire (required)
+     * @param maxSalaire maximum salaire (required)
+     * @return Successful operation (status code 200)
+     */
+    @Operation(
+        operationId = "usersSearchGet",
+        summary = "Get all users",
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  PageResponseDTO.class)))
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.GET,
+        value = "/users/search",
+        produces = { "application/json" }
+    )
+    default Mono<ResponseEntity<PageResponseDTO>> usersSearchGet(
+            @Parameter(name = "minSalaire", description = "minimum salaire", schema = @Schema(description = "", defaultValue = "1500")) @Valid @RequestParam(value = "minSalaire", required = false, defaultValue = "1500") Integer minSalaire,
+            @Parameter(name = "maxSalaire", description = "maximum salaire", schema = @Schema(description = "", defaultValue = "50000")) @Valid @RequestParam(value = "maxSalaire", required = false, defaultValue = "50000") Integer maxSalaire,
+            @Parameter(name = "page", description = "page", schema = @Schema(description = "", defaultValue = "0")) @Valid @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
+            @Parameter(name = "size", description = "size", schema = @Schema(description = "", defaultValue = "5")) @Valid @RequestParam(value = "size", required = false, defaultValue = "5") Integer size
+    ) {
+        Mono<Void> result = Mono.empty();
 
+        return result.then(Mono.empty());
+
+    }
 }
