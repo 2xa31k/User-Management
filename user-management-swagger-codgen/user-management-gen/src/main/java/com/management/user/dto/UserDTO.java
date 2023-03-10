@@ -1,27 +1,29 @@
 package com.management.user.dto;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+
+import org.springframework.hateoas.RepresentationModel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
 
 /**
  * UserDTO
  */
+@lombok.Builder @lombok.NoArgsConstructor @lombok.AllArgsConstructor
 
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-09T14:51:31.742070+01:00[Africa/Casablanca]")
-public class UserDTO  {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-10T10:33:28.762489700+01:00[Africa/Casablanca]")
+public class UserDTO  extends RepresentationModel<UserDTO>
+implements Serializable{ 
 
   @JsonProperty("id")
   private Long id;
@@ -40,6 +42,10 @@ public class UserDTO  {
 
   @JsonProperty("salaire")
   private Long salaire;
+
+  @JsonProperty("skills")
+  @Valid
+  private List<SkillDTO> skills;
 
   public UserDTO id(Long id) {
     this.id = id;
@@ -126,9 +132,7 @@ public class UserDTO  {
    * Get email
    * @return email
   */
-  
   @NotNull @javax.validation.constraints.Email
-  @Pattern(regexp = "^([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})$") 
   @Schema(name = "email", required = true)
   public String getEmail() {
     return email;
@@ -145,9 +149,10 @@ public class UserDTO  {
 
   /**
    * Get salaire
+   * minimum: 2000
    * @return salaire
   */
-  
+  @Min(2000L) 
   @Schema(name = "salaire", required = false)
   public Long getSalaire() {
     return salaire;
@@ -155,6 +160,33 @@ public class UserDTO  {
 
   public void setSalaire(Long salaire) {
     this.salaire = salaire;
+  }
+
+  public UserDTO skills(List<SkillDTO> skills) {
+    this.skills = skills;
+    return this;
+  }
+
+  public UserDTO addSkillsItem(SkillDTO skillsItem) {
+    if (this.skills == null) {
+      this.skills = new ArrayList<>();
+    }
+    this.skills.add(skillsItem);
+    return this;
+  }
+
+  /**
+   * Get skills
+   * @return skills
+  */
+  @Valid 
+  @Schema(name = "skills", required = false)
+  public List<SkillDTO> getSkills() {
+    return skills;
+  }
+
+  public void setSkills(List<SkillDTO> skills) {
+    this.skills = skills;
   }
 
   @Override
@@ -171,12 +203,13 @@ public class UserDTO  {
         Objects.equals(this.lastname, user.lastname) &&
         Objects.equals(this.phonenumber, user.phonenumber) &&
         Objects.equals(this.email, user.email) &&
-        Objects.equals(this.salaire, user.salaire);
+        Objects.equals(this.salaire, user.salaire) &&
+        Objects.equals(this.skills, user.skills);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstname, lastname, phonenumber, email, salaire);
+    return Objects.hash(id, firstname, lastname, phonenumber, email, salaire, skills);
   }
 
   @Override
@@ -189,6 +222,7 @@ public class UserDTO  {
     sb.append("    phonenumber: ").append(toIndentedString(phonenumber)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    salaire: ").append(toIndentedString(salaire)).append("\n");
+    sb.append("    skills: ").append(toIndentedString(skills)).append("\n");
     sb.append("}");
     return sb.toString();
   }
