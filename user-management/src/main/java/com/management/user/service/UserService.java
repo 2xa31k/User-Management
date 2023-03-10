@@ -57,9 +57,8 @@ public class UserService {
 	
 	
 	
-	public Mono<Page<User>> getAllUsers(String firstname, String lastname, Long minSalaire, Long maxSalaire, PageRequest pageRequest){
-        return this.userRep.findAllByFirstnameContainingAndLastnameContainingAndSalaireBetween(firstname,
-        		lastname,minSalaire,maxSalaire,pageRequest)
+	public Mono<Page<User>> getAllUsers(Long minSalaire, Long maxSalaire, PageRequest pageRequest){
+        return this.userRep.findAllBySalaireBetween(minSalaire,maxSalaire,pageRequest)
                         .collectList()
                         .zipWith(this.userRep.count())
                         .map(t -> new PageImpl<>(t.getT1(), pageRequest, t.getT2()));

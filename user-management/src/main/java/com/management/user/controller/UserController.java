@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.Link;
-import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.management.user.dto.PageResponse;
 import com.management.user.dto.UserDto;
 import com.management.user.entity.User;
 import com.management.user.handling.UserNotFound;
@@ -59,18 +59,19 @@ public class UserController {
 		 }
 				
 	@GetMapping("/search")
-    public Mono<PagedModel<UserDto>> getAllSearch(@RequestParam(defaultValue = "0" ,value="page") int page
+    public Mono<PageResponse> getAllSearch(@RequestParam(defaultValue = "0" ,value="page") int page
     		, @RequestParam(defaultValue = "5",value="size") int size
-    		, @RequestParam(defaultValue = "",value="firstname") String firstname
-    		, @RequestParam(defaultValue = "",value="lastname") String lastname
     		, @RequestParam(defaultValue = "0",value="minSalaire") Long minSalaire
     		, @RequestParam(defaultValue = "50000",value="maxSalaire") Long maxSalaire){
 		
 		Link link = linkTo(methodOn(UserController.class)
-			      .getAllSearch(page,size,firstname,lastname,minSalaire,maxSalaire)).withSelfRel();
+			      .getAllSearch(page,size,minSalaire,maxSalaire)).withRel("self");
 		
-        return  this.userServ.getAllUsers(firstname,lastname,minSalaire,maxSalaire,PageRequest.of(page, size))
-        		 .flatMap(u -> Mono.just(pagedResourcesAssembler.toModel(u,entityAssembler,link)));
+        return  this.userServ.getAllUsers(minSalaire,maxSalaire,PageRequest.of(page, size))
+        		 .flatMap(u -> Mono.just(pagedResourcesAssembler.toModel(u,entityAssembler,link)))
+        		 .flatMap(u -> Mono.just(new PageResponse(u,
+        				 u.getContent().stream().map(d->d.getSalaire()).reduce(0L,Long::sum),
+        				 u.getContent().stream().map(d->d.getSalaire()).reduce(0L,Long::sum)/u.getContent().size())));
          
     }
 	

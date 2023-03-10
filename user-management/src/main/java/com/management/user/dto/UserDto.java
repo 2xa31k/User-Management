@@ -2,6 +2,7 @@ package com.management.user.dto;
 
 import java.io.Serializable;
 
+
 import org.springframework.hateoas.RepresentationModel;
 
 import lombok.AllArgsConstructor;
@@ -25,3 +26,4 @@ implements Serializable{
 	
 	
 }
+	

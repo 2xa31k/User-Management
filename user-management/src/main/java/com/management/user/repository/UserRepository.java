@@ -11,6 +11,5 @@ import reactor.core.publisher.Flux;
 @Repository
 public interface UserRepository extends ReactiveCrudRepository<User, Long>{
 
-	Flux<User> findAllByFirstnameContainingAndLastnameContainingAndSalaireBetween(String firstname,String lastName, 
-			Long minSalaire, Long maxSalaire,Pageable pageable);
+	Flux<User> findAllBySalaireBetween(Long minSalaire, Long maxSalaire,Pageable pageable);
 }
