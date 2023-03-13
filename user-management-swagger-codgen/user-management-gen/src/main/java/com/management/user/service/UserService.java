@@ -89,7 +89,9 @@ public class UserService {
 	                                .map(EntityDto::toDto)
 	                                .collectList()
 	                                .flatMap(skills -> {
+	                                	
 	                                    d.setSkills(skills);
+	                                    d.add(linkTo(methodOn(UserController.class).usersIdGet(d.getId())).withRel("self"));
 	                                    return Mono.just(d);
 	                                }).subscribeOn(Schedulers.boundedElastic())));
 	                

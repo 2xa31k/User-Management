@@ -36,8 +36,11 @@ public class TestDB {
 
 		var statements = Arrays.asList(//
 				"DROP TABLE IF EXISTS users;",
+				"DROP TABLE IF EXISTS skills;",
 				"CREATE TABLE users ( id SERIAL4 PRIMARY KEY, firstname VARCHAR(100) NOT NULL, lastname VARCHAR(100) NOT NULL,"
 				+ "email VARCHAR(100) NOT NULL,phonenumber VARCHAR(100) NOT NULL,salaire int8);",
+				"CREATE TABLE skills ( id SERIAL4 PRIMARY KEY, user_id int8, name VARCHAR(100) NOT NULL,"
+						+ "email VARCHAR(100) NOT NULL,phonenumber VARCHAR(100) NOT NULL,salaire int8);",
 				"INSERT INTO public.users (firstname,lastname,email,phonenumber,salaire) VALUES\r\n"
 				+ "	 ('Ayoub','Elk','aelk@test.com','0600000',3000)",
 				"INSERT INTO public.users (firstname,lastname,email,phonenumber,salaire) VALUES\r\n"

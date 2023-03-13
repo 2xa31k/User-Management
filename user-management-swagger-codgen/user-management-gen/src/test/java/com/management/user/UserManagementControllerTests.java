@@ -87,7 +87,7 @@ class UserManagementControllerTests {
 	
 	@Test
 	void addUser() {
-		UserDTO user1 = new UserDTO(10L,"ayoub","elk","aelk@gmail.com","+212600000",5000L,null);
+		UserDTO user1 = new UserDTO(10L,"ayoub","elk","+212600000","aelk@gmail.com",5000L,null);
 		when(userServ.addUser(Mockito.any())).thenReturn(Mono.just(user1));
 		
 		Mono<UserDTO> response = this.client
@@ -109,7 +109,7 @@ class UserManagementControllerTests {
 	
 	@Test
 	void update() {
-		UserDTO user1 = new UserDTO(10L,"ayoub","elk","aelk@gmail.com","+212600000",5000L,null);
+		UserDTO user1 = new UserDTO(10L,"ayoub","elk","+212600000","aelk@gmail.com",5000L,null);
 		when(userServ.updateUser(Mockito.any(),Mockito.any())).thenReturn(Mono.just(user1));
 		
 		Mono<UserDTO> response = this.client
